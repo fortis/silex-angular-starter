@@ -1,0 +1,36 @@
+{
+  "name": "fortis/silex-things",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alan Bondarchuk",
+      "email": "imacoda@gmail.com"
+    }
+  ],
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src"
+    }
+  },
+  "require": {
+    "silex/silex": "~2.0",
+    "silex/web-profiler": "^2.0",
+    "monolog/monolog": "^1.20",
+    "symfony/yaml": "^3.1",
+    "doctrine/dbal": "^2.5",
+    "sorien/silex-pimple-dumper": "~2.0",
+    "swiftmailer/swiftmailer": "^5.4",
+    "texthtml/whoops-silex": "^1.0",
+    "sorien/silex-dbal-profiler": "~2.0",
+    "moust/silex-cache": "^2.0",
+    "bugsnag/bugsnag": "^3.1",
+    "fortis/silex-bugsnag": "^1.0",
+    "symfony/security": "^3.1",
+    "twig/twig": "^1.24",
+    "symfony/asset": "^3.1",
+    "leafo/scssphp": "^0.6.5"
+  }
+}

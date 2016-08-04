@@ -1,0 +1,8 @@
+bugsnag.api_key: 'YOUR_API_KEY'
+db.options:
+  driver: pdo_mysql
+  host: localhost
+  dbname: database_name
+  user: database_username
+  password: database_password
+  charset: utf8
