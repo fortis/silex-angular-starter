@@ -1,5 +1,5 @@
-angular.module('MainController', []).controller('MainController', ['$scope', '$location', '$localStorage', 'User',
-  function ($scope, $location, $localStorage, User) {
+angular.module('MainController', []).controller('MainController', ['$scope', '$location', '$localStorage',
+  function ($scope, $location, $localStorage) {
     /**
      * Responsible for highlighting the currently active menu item in the navbar.
      *
