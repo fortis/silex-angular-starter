@@ -17,80 +17,85 @@ use Sorien\Provider\PimpleDumpProvider;
 use Symfony\Component\Yaml\Yaml;
 use WhoopsSilex\WhoopsServiceProvider;
 
-class App extends Application {
-  use \Silex\Application\MonologTrait;
+class App extends Application
+{
+    use \Silex\Application\MonologTrait;
 
-  private $settings;
+    private $settings;
 
-  function __construct(array $values = []) {
-    parent::__construct($values);
+    function __construct(array $values = [])
+    {
+        parent::__construct($values);
 
-    // Load settings.
-    $this->settings = Yaml::parse(
-      file_get_contents(__DIR__ . '/../app/config/settings.yml')
-    );
+        $this['debug'] = true;
 
-    // Register service providers.
-    $this->register(new PimpleDumpProvider());
-    $this->register(new SwiftmailerServiceProvider());
+        // Load settings.
+        $this->settings = Yaml::parse(
+          file_get_contents(__DIR__.'/../app/config/settings.yml')
+        );
 
-    // Whoops provider.
-    $this->register(new WhoopsServiceProvider());
+        // Swift mailer.
+        $this->register(new SwiftmailerServiceProvider());
+        // Assets.
+        $this->register(new \Silex\Provider\AssetServiceProvider(), [
+          'assets.version'        => 'v1',
+          'assets.version_format' => '%s?version=%s',
+          'assets.base_path'      => '/public',
+        ]);
+        // Twig.
+        $this->register(new TwigServiceProvider(), [
+          'twig.path' => [
+            __DIR__.'/../resources/views',
+          ],
+        ]);
+        // Bugsnag.
+        $this->register(new BugsnagServiceProvider(), [
+            'bugsnag.options' => [
+              'apiKey' => $this->settings['bugsnag.api_key'],
+            ],
+          ]
+        );
+        // Cache.
+        $this->register(new CacheServiceProvider(), [
+            'cache.options' => [
+              'driver'    => 'file',
+              'cache_dir' => __DIR__.'/../app/storage/cache',
+            ],
+          ]
+        );
+        // Configure database connection.
+        $this->register(new DoctrineServiceProvider(), [
+            'db.options' => $this->settings['db.options'],
+          ]
+        );
+        // Debug tools.
+        if ($this['debug']) {
+            // Pimple dump.
+            $this->register(new PimpleDumpProvider());
+            // Whoops.
+            $this->register(new WhoopsServiceProvider());
+            // Monolog.
+            $this->register(new MonologServiceProvider(), [
+                'monolog.logfile' => __DIR__
+                  .'/../app/storage/log/development.log',
+              ]
+            );
+            // Web Profiler.
+            $this->register(new HttpFragmentServiceProvider());
+            $this->register(new ServiceControllerServiceProvider());
+            $this->register(new WebProfilerServiceProvider(), [
+                'profiler.cache_dir'    => __DIR__
+                  .'/../app/storage/cache/profiler',
+                'profiler.mount_prefix' => '/_profiler', // this is the default
+              ]
+            );
+            // Doctrine DBAL Profiler.
+            $this->register(new DoctrineProfilerServiceProvider());
+        }
 
-    // Monolog provider.
-    $this->register(new MonologServiceProvider(), [
-        'monolog.logfile' => __DIR__ . '/../app/storage/log/development.log',
-      ]
-    );
-
-    // Assets provider.
-    $this->register(new \Silex\Provider\AssetServiceProvider(), array(
-      'assets.version' => 'v1',
-      'assets.version_format' => '%s?version=%s',
-      'assets.base_path' => '/public'
-    ));
-
-    // Twig provider.
-    $this->register(new TwigServiceProvider(), [
-      'twig.path' => [
-        __DIR__ . '/../resources/views',
-      ],
-    ]);
-
-    // Web profiler provider.
-    $this->register(new HttpFragmentServiceProvider());
-    $this->register(new ServiceControllerServiceProvider());
-    $this->register(new WebProfilerServiceProvider(), [
-        'profiler.cache_dir'    => __DIR__ . '/../app/storage/cache/profiler',
-        'profiler.mount_prefix' => '/_profiler', // this is the default
-      ]
-    );
-
-    // Doctrine DBAL Profiler.
-    $this->register(new DoctrineProfilerServiceProvider());
-
-    // Bugsnag Provider.
-    $this->register(new BugsnagServiceProvider(), [
-        'bugsnag.options' => [
-          'apiKey' => $this->settings['bugsnag.api_key'],
-        ],
-      ]
-    );
-
-    // Cache provider.
-    $this->register(new CacheServiceProvider(), [
-        'cache.options' => [
-          'driver'    => 'file',
-          'cache_dir' => __DIR__ . '/../app/storage/cache',
-        ],
-      ]
-    );
-
-    // Configure database connection.
-    $this->register(new DoctrineServiceProvider(), [
-        'db.options' => $this->settings['db.options'],
-      ]
-    );
-  }
+        // Load and bind routes.
+        $routesLoader = new RoutesLoader($this);
+        $routesLoader->bindRoutes();
+    }
 
 }
