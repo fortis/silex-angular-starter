@@ -21,12 +21,15 @@ elixir(function (mix) {
     ])
     .scripts([
       'libs/**/*.js',
+    ])
+    .scripts([
+      'libs/**/*.js',
       'app.js',
       'appRoutes.js',
       'controllers/**/*.js',
       'services/**/*.js',
       'directives/**/*.js'
-    ])
+    ], 'public/js/all.js', './angular')
     .version([
       'css/all.css',
       'js/all.js'
