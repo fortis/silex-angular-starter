@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.5.9
   - 5.6
   - 7.0
 
@@ -15,3 +14,8 @@ install:
 
 script:
   - phpunit
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "nJox97wNftcCyEJBICFdv4lpbuwhGr2n2WZHkNGt64ZEXBCs6fTO9UXrM30wd0zDbClvz0pdcXcOlkLrNn7nTTCJZUhoUZSBPTDjUX+hVdgM/mxIAaMXn62ngOLe6CmWXSY5ihhNo9USHoQDhMtPl5sxSGFQAd+JxldnM2SqCOwbPtjQTsnrTYBKneX2P8X+gOT5/arIo5iICFio4WPoDn0I+rr+0Uh+SQzKQa1cjTnpIqFp9qVKwwM6WYVpGORrfSDDUX2Y9m753vzAL6JYifRybyS8EOt7KeL6FX67z45ZppdJt5PMhXjbzC90x0UvvbErgwRPzFGPxdyc23QImL8ZGH6q2riUglPauvIkI/AT6d9rRDRnA14KUtID1fCisOMY8RCWHqIgCegHppNADw0HHdEhBZT0kJIjtnjFdXpzbHHQpjoIjH48YZyzGcrVyHCdoNGJuyOG6i3o+RL7d5bHGWraPmUJDZcPu6ZLzWOPev9yrtUeQMYPRqjOfb9gqWcYIBmt+ecMXSomuy+UVT8lfyJehoajT3258dR1Jltjlllo/YRxM9fu2RExnn/2VBprhQLc7Ra1D+8muQYWcHXEJAquplvyVbQnMwK+Xg/YKfdX39cuADUKABIn1tSQePrut7UH7l1M61VsYpzG9Xt1/KHW58yEdWw52CdY4/A="
