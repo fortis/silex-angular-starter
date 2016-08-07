@@ -4,7 +4,7 @@ namespace App;
 
 use Bugsnag\Silex\Provider\BugsnagServiceProvider;
 use Moust\Silex\Provider\CacheServiceProvider;
-use Silex\Application;
+use Silex\Application as BaseApplication;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\MonologServiceProvider;
@@ -17,23 +17,29 @@ use Sorien\Provider\PimpleDumpProvider;
 use Symfony\Component\Yaml\Yaml;
 use WhoopsSilex\WhoopsServiceProvider;
 
-defined('SILEX_ROOT') or define('SILEX_ROOT', __DIR__.'/../../');
-
-class App extends Application
+class Application extends BaseApplication
 {
     use \Silex\Application\MonologTrait;
 
     private $settings;
 
-    const CONFIG_PATH = SILEX_ROOT.'/app/config';
-    const STORAGE_PATH = SILEX_ROOT.'/app/storage';
-    const RESOURCES_PATH = SILEX_ROOT.'/resources';
+    const APP_ROOT = __DIR__.'/../../';
+    const CONFIG_PATH = self::APP_ROOT.'/app/config';
+    const STORAGE_PATH = self::APP_ROOT.'/app/storage';
+    const SRC_PATH = self::APP_ROOT.'/app/src';
+    const RESOURCES_PATH = self::APP_ROOT.'/resources';
 
     public function __construct(array $values = [])
     {
         parent::__construct($values);
 
-        $this['debug'] = false;
+        // Mount routes.
+        $this->mount('/', new CommonControllerProvider());
+        $this->mount('/partials', new PartialsControllerProvider());
+        $this->get('{undefinedRoute}',
+          function (Application $app, $undefinedRoute) {
+              return $app['twig']->render('layout.twig');
+          })->assert('undefinedRoute', '([A-z\d-\/_.]+)?');
 
         // Load settings.
         $this->settings = file_exists(self::CONFIG_PATH.'/settings.yml')
@@ -50,7 +56,7 @@ class App extends Application
         ]);
         // Twig.
         $this->register(new TwigServiceProvider(), [
-          'twig.path' => [self::RESOURCES_PATH.'/views'],
+          'twig.path' => [self::SRC_PATH.'/Views'],
         ]);
         // Bugsnag.
         if (!empty($this->settings['bugsnag.api_key'])) {
@@ -99,10 +105,6 @@ class App extends Application
             // Doctrine DBAL Profiler.
             $this->register(new DoctrineProfilerServiceProvider());
         }
-
-        // Load and bind routes.
-        $routes = new Routes($this);
-        $routes->bindRoutes();
     }
 
 }

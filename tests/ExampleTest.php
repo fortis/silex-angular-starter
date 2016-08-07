@@ -2,18 +2,15 @@
 
 namespace App\Tests;
 
-use App\App;
+use App\Application;
 use Silex\WebTestCase;
 
 class ExampleTest extends WebTestCase
 {
-
     public function createApplication()
     {
-        $app = new App();
-        $app['debug'] = true;
+        $app = new Application(['debug' => true]);
         unset($app['exception_handler']);
-
         return $app;
     }
 
