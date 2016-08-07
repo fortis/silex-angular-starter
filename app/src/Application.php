@@ -104,7 +104,9 @@ class Application extends BaseApplication
               ]
             );
             // Doctrine DBAL Profiler.
-            $this->register(new DoctrineProfilerServiceProvider());
+            if (!empty($this->settings['db.options'])) {
+                $this->register(new DoctrineProfilerServiceProvider());
+            }
         }
     }
 
