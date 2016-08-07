@@ -4,6 +4,6 @@
     "laravel-elixir": "*"
   },
   "scripts": {
-    "postinstall": "gulp"
+    "post-install-cmd": "gulp"
   }
 }
