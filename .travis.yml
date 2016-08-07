@@ -14,4 +14,5 @@ install:
   - composer install && npm install -g gulp && npm install
 
 script:
-  - composer dump-autoload --optimize && gulp && vendor/bin/phpunit
+  - gulp
+  - vendor/bin/phpunit
