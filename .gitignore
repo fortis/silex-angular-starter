@@ -1,6 +1,6 @@
 .idea/
 /app/storage/*/*
-public/
+public/*/
 /node_modules
 /vendor/
 /app/config/settings.yml

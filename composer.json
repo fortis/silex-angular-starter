@@ -17,7 +17,7 @@
   },
   "extra": {
     "heroku": {
-      "document-root": "web",
+      "document-root": "public",
       "index-document": "index.php"
     }
   },
