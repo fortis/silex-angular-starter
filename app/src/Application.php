@@ -16,6 +16,8 @@ use Sorien\Provider\DoctrineProfilerServiceProvider;
 use Sorien\Provider\PimpleDumpProvider;
 use Symfony\Component\Yaml\Yaml;
 use WhoopsSilex\WhoopsServiceProvider;
+use App\Controllers\CommonControllerProvider;
+use App\Controllers\PartialsControllerProvider;
 
 class Application extends BaseApplication
 {
@@ -56,7 +58,8 @@ class Application extends BaseApplication
         ]);
         // Twig.
         $this->register(new TwigServiceProvider(), [
-          'twig.path' => [self::SRC_PATH.'/Views'],
+          'twig.path'    => [self::SRC_PATH.'/Views'],
+//          'twig.options' => ['cache' => self::STORAGE_PATH.'/cache/twig'],
         ]);
         // Bugsnag.
         if (!empty($this->settings['bugsnag.api_key'])) {
