@@ -40,7 +40,6 @@
     "leafo/scssphp": "^0.6.5"
   },
   "scripts": {
-    "post-install-cmd": "gulp",
-    "post-update-cmd": "gulp"
+    "post-install-cmd": "gulp"
   }
 }
