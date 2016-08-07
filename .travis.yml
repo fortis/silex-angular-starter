@@ -16,7 +16,7 @@ before_install:
   - nvm install 5.1
 
 install:
-  - composer install && npm install -g gulp && npm install
+  - composer update --prefer-dist && npm install -g gulp && npm install
 
 script:
   - phpunit
