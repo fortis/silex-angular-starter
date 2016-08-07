@@ -44,7 +44,7 @@ class App extends Application
         $this->register(new \Silex\Provider\AssetServiceProvider(), [
           'assets.version'        => 'v1',
           'assets.version_format' => '%s?version=%s',
-          'assets.base_path'      => '/public',
+          'assets.base_path'      => '/',
         ]);
         // Twig.
         $this->register(new TwigServiceProvider(), [
