@@ -4,7 +4,7 @@ namespace App;
 
 use Silex\Application;
 
-class RoutesLoader
+class Routes
 {
 
     private $app;

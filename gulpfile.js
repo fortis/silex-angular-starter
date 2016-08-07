@@ -20,7 +20,7 @@ elixir(function (mix) {
       'style.css'
     ])
     .scripts([
-      'libs/**/*.js',
+      'libs/**/*.js'
     ])
     .scripts([
       'libs/**/*.js',

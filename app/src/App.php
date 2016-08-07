@@ -23,7 +23,11 @@ class App extends Application
 
     private $settings;
 
-    function __construct(array $values = [])
+    const CONFIG_PATH = __DIR__.'/../config';
+    const RESOURCES_PATH = __DIR__.'/../../resources';
+    const STORAGE_PATH = __DIR__.'/../storage';
+
+    public function __construct(array $values = [])
     {
         parent::__construct($values);
 
@@ -31,7 +35,7 @@ class App extends Application
 
         // Load settings.
         $this->settings = Yaml::parse(
-          file_get_contents(__DIR__.'/../app/config/settings.yml')
+          file_get_contents(self::CONFIG_PATH.'/settings.yml')
         );
 
         // Swift mailer.
@@ -44,9 +48,7 @@ class App extends Application
         ]);
         // Twig.
         $this->register(new TwigServiceProvider(), [
-          'twig.path' => [
-            __DIR__.'/../resources/views',
-          ],
+          'twig.path' => [self::RESOURCES_PATH.'/views'],
         ]);
         // Bugsnag.
         $this->register(new BugsnagServiceProvider(), [
@@ -59,7 +61,7 @@ class App extends Application
         $this->register(new CacheServiceProvider(), [
             'cache.options' => [
               'driver'    => 'file',
-              'cache_dir' => __DIR__.'/../app/storage/cache',
+              'cache_dir' => self::STORAGE_PATH.'/cache',
             ],
           ]
         );
@@ -76,16 +78,14 @@ class App extends Application
             $this->register(new WhoopsServiceProvider());
             // Monolog.
             $this->register(new MonologServiceProvider(), [
-                'monolog.logfile' => __DIR__
-                  .'/../app/storage/log/development.log',
+                'monolog.logfile' => self::STORAGE_PATH.'/log/development.log',
               ]
             );
             // Web Profiler.
             $this->register(new HttpFragmentServiceProvider());
             $this->register(new ServiceControllerServiceProvider());
             $this->register(new WebProfilerServiceProvider(), [
-                'profiler.cache_dir'    => __DIR__
-                  .'/../app/storage/cache/profiler',
+                'profiler.cache_dir'    => self::STORAGE_PATH.'/cache/profiler',
                 'profiler.mount_prefix' => '/_profiler', // this is the default
               ]
             );
@@ -94,8 +94,8 @@ class App extends Application
         }
 
         // Load and bind routes.
-        $routesLoader = new RoutesLoader($this);
-        $routesLoader->bindRoutes();
+        $routes = new Routes($this);
+        $routes->bindRoutes();
     }
 
 }
