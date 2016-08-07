@@ -4,6 +4,7 @@
     "laravel-elixir": "*"
   },
   "scripts": {
-    "postinstall": "npm install && gulp"
+    "postinstall": "npm install && gulp",
+    "heroku-postbuild": "gulp"
   }
 }
