@@ -24,9 +24,10 @@ class ExampleTest extends WebTestCase
      */
     public function testBasicExample()
     {
-        $response = $this->call('GET', '/');
-
-        $this->assertEquals(200, $response->getStatusCode());
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/');
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertCount(1, $crawler->filter('html:contains("Todos")'));
     }
 
 }
