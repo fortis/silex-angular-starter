@@ -5,6 +5,8 @@ namespace App\Tests;
 use App\App;
 use Silex\WebTestCase;
 
+const SILEX_ROOT = __DIR__.'/../';
+
 class ExampleTest extends WebTestCase
 {
 
