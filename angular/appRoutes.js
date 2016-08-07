@@ -20,7 +20,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
       .otherwise({
         redirectTo: '/'
       });
-    
+
     $locationProvider.html5Mode(true);
 
     $httpProvider.interceptors.push(['$rootScope', '$q', '$localStorage',

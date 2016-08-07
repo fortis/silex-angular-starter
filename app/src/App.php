@@ -38,7 +38,7 @@ class App extends Application
         // Load settings.
         $this->settings = file_exists(self::CONFIG_PATH.'/settings.yml')
           ? Yaml::parse(file_get_contents(self::CONFIG_PATH.'/settings.yml'))
-          : array();
+          : [];
 
         // Swift mailer.
         $this->register(new SwiftmailerServiceProvider());
