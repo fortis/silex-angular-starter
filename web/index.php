@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+const SILEX_ROOT = __DIR__.'/../';
+require_once SILEX_ROOT.'/vendor/autoload.php';
 
 use App\App;
 

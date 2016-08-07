@@ -23,9 +23,9 @@ class App extends Application
 
     private $settings;
 
-    const CONFIG_PATH = __DIR__.'/../config';
-    const RESOURCES_PATH = __DIR__.'/../../resources';
-    const STORAGE_PATH = __DIR__.'/../storage';
+    const CONFIG_PATH = SILEX_ROOT.'/app/config';
+    const STORAGE_PATH = SILEX_ROOT.'/app/storage';
+    const RESOURCES_PATH = SILEX_ROOT.'/resources';
 
     public function __construct(array $values = [])
     {
