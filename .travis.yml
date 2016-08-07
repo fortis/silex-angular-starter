@@ -1,10 +1,10 @@
 language: php
 
-cache:
-  directories:
-  - node_modules
-  - vendor
-  - $HOME/.composer/cache
+#cache:
+#  directories:
+#  - node_modules
+#  - vendor
+#  - $HOME/.composer/cache
 
 php:
   - 5.6
