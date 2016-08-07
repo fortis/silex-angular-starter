@@ -14,7 +14,6 @@ use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
 use Sorien\Provider\DoctrineProfilerServiceProvider;
 use Sorien\Provider\PimpleDumpProvider;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 use WhoopsSilex\WhoopsServiceProvider;
 
@@ -32,7 +31,7 @@ class App extends Application
     {
         parent::__construct($values);
 
-        $this['debug'] = true;
+        $this['debug'] = false;
 
         // Load settings.
         $this->settings = file_exists(self::CONFIG_PATH.'/settings.yml')
