@@ -14,5 +14,4 @@ install:
   - composer install && npm install -g gulp && npm install
 
 script:
-  - gulp
-  - vendor/bin/phpunit
+  - phpunit
