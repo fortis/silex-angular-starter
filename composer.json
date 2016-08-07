@@ -15,6 +15,12 @@
       "App\\": "app/src"
     }
   },
+  "extra": {
+    "heroku": {
+      "document-root": "public",
+      "index-document": "index.php"
+    }
+  },
   "require": {
     "silex/silex": "~2.0",
     "silex/web-profiler": "^2.0",
