@@ -8,7 +8,8 @@
     }
   ],
   "config": {
-    "vendor-dir": "vendor"
+    "vendor-dir": "vendor",
+    "preferred-install": "dist"
   },
   "autoload": {
     "psr-4": {
@@ -41,7 +42,6 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "gulp",
       "composer dump-autoload --optimize"
     ]
   }
