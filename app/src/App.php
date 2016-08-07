@@ -17,6 +17,8 @@ use Sorien\Provider\PimpleDumpProvider;
 use Symfony\Component\Yaml\Yaml;
 use WhoopsSilex\WhoopsServiceProvider;
 
+defined('SILEX_ROOT') or define('SILEX_ROOT', __DIR__.'/../../');
+
 class App extends Application
 {
     use \Silex\Application\MonologTrait;
