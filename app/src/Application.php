@@ -16,8 +16,6 @@ use Sorien\Provider\DoctrineProfilerServiceProvider;
 use Sorien\Provider\PimpleDumpProvider;
 use Symfony\Component\Yaml\Yaml;
 use WhoopsSilex\WhoopsServiceProvider;
-use App\Controllers\CommonControllerProvider;
-use App\Controllers\PartialsControllerProvider;
 
 class Application extends BaseApplication
 {
