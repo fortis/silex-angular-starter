@@ -4,6 +4,7 @@
     "laravel-elixir": "*"
   },
   "scripts": {
-    "post-install-cmd": "gulp"
+    "post-install-cmd": "gulp",
+    "post-update-cmd": "gulp"
   }
 }
