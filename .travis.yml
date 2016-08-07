@@ -2,10 +2,16 @@ language: php
 
 php:
   - 5.5.9
+  - 5.6
+  - 7.0
 
-env:
- - APP_ENV=dev
+sudo: false
 
-before_script:
-  - wget http://getcomposer.org/composer.phar
-  - composer install --prefer-source
+before_install:
+  - nvm install 5.1
+
+install:
+  - composer install && npm install -g gulp && npm install
+
+script:
+  - composer dump-autoload --optimize && gulp && vendor/bin/phpunit
