@@ -14,6 +14,7 @@ use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\WebProfilerServiceProvider;
 use Sorien\Provider\DoctrineProfilerServiceProvider;
 use Sorien\Provider\PimpleDumpProvider;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 use WhoopsSilex\WhoopsServiceProvider;
 
@@ -34,9 +35,9 @@ class App extends Application
         $this['debug'] = true;
 
         // Load settings.
-        $this->settings = Yaml::parse(
-          file_get_contents(self::CONFIG_PATH.'/settings.yml')
-        );
+        $this->settings = file_exists(self::CONFIG_PATH.'/settings.yml')
+          ? Yaml::parse(file_get_contents(self::CONFIG_PATH.'/settings.yml'))
+          : array();
 
         // Swift mailer.
         $this->register(new SwiftmailerServiceProvider());
@@ -51,12 +52,15 @@ class App extends Application
           'twig.path' => [self::RESOURCES_PATH.'/views'],
         ]);
         // Bugsnag.
-        $this->register(new BugsnagServiceProvider(), [
-            'bugsnag.options' => [
-              'apiKey' => $this->settings['bugsnag.api_key'],
-            ],
-          ]
-        );
+        if (!empty($this->settings['bugsnag.api_key'])) {
+            $this->register(new BugsnagServiceProvider(), [
+                'bugsnag.options' => [
+                  'apiKey' => $this->settings['bugsnag.api_key'],
+                ],
+              ]
+            );
+        }
+
         // Cache.
         $this->register(new CacheServiceProvider(), [
             'cache.options' => [
@@ -66,10 +70,12 @@ class App extends Application
           ]
         );
         // Configure database connection.
-        $this->register(new DoctrineServiceProvider(), [
-            'db.options' => $this->settings['db.options'],
-          ]
-        );
+        if (!empty($this->settings['db.options'])) {
+            $this->register(new DoctrineServiceProvider(), [
+                'db.options' => $this->settings['db.options'],
+              ]
+            );
+        }
         // Debug tools.
         if ($this['debug']) {
             // Pimple dump.
