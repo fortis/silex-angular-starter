@@ -36,7 +36,7 @@ class Application extends BaseApplication
 
         $this->register(new GraphiteServiceProvider(), [
           'graphite.options' => [
-            'api_key' => 'bcd8e42a-808e-449d-bfe9-5537a4ce68e7',
+            'apiKey' => 'bcd8e42a-808e-449d-bfe9-5537a4ce68e7',
             'host'      => 'udp://9e1ca0f6.carbon.hostedgraphite.com',
             'port'      => 2003,
             'prefix' => 'some.metric.namespace'

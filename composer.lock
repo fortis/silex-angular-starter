@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "84f9fc998e1e061e5e6d3c1ac1661f6c",
-    "content-hash": "a06176ede2fa1573fb42e840df0ec993",
+    "hash": "c38fec1c00d88747b36efd8e1e1fa447",
+    "content-hash": "cdfccb3fbadfea2f1d092657bb437b14",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -698,16 +698,16 @@
         },
         {
             "name": "fortis/silex-graphite",
-            "version": "v1.0.2",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fortis/silex-graphite.git",
-                "reference": "acc6c0165a72768781e19dd9bdb90c0deca6416e"
+                "reference": "776b467fcae00b3d7d8b268feaf7e38c4ccdda29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fortis/silex-graphite/zipball/acc6c0165a72768781e19dd9bdb90c0deca6416e",
-                "reference": "acc6c0165a72768781e19dd9bdb90c0deca6416e",
+                "url": "https://api.github.com/repos/fortis/silex-graphite/zipball/776b467fcae00b3d7d8b268feaf7e38c4ccdda29",
+                "reference": "776b467fcae00b3d7d8b268feaf7e38c4ccdda29",
                 "shasum": ""
             },
             "require": {
@@ -742,7 +742,7 @@
                 "provider",
                 "silex"
             ],
-            "time": "2016-08-08 19:52:29"
+            "time": "2016-08-08 20:20:59"
         },
         {
             "name": "guzzlehttp/guzzle",
