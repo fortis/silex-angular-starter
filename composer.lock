@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "63435d8b7f54a460cc55b8004815667e",
-    "content-hash": "1efb0c0f025a6915db7d4d74b56b6bd6",
+    "hash": "84f9fc998e1e061e5e6d3c1ac1661f6c",
+    "content-hash": "a06176ede2fa1573fb42e840df0ec993",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -695,6 +695,54 @@
                 "tracking"
             ],
             "time": "2016-08-05 09:44:26"
+        },
+        {
+            "name": "fortis/silex-graphite",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fortis/silex-graphite.git",
+                "reference": "acc6c0165a72768781e19dd9bdb90c0deca6416e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fortis/silex-graphite/zipball/acc6c0165a72768781e19dd9bdb90c0deca6416e",
+                "reference": "acc6c0165a72768781e19dd9bdb90c0deca6416e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "silex/silex": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Graphite": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alan Bondarchuk",
+                    "email": "imacoda@gmail.com"
+                }
+            ],
+            "description": "Silex 2 Service Provider for Hosted Graphite",
+            "homepage": "https://github.com/fortis/silex-graphite",
+            "keywords": [
+                "Metrics",
+                "carbon",
+                "graphite",
+                "log",
+                "provider",
+                "silex"
+            ],
+            "time": "2016-08-08 19:52:29"
         },
         {
             "name": "guzzlehttp/guzzle",

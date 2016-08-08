@@ -11,6 +11,7 @@ class CommonControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
 
         $controllers->get('/', function (Application $app) {
+            $app['graphite']->send("foo.bar");
             return $app['twig']->render('layout.twig');
         });
 
