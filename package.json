@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "gulp": "^3.9.1",
-    "laravel-elixir": "^4.0"
+    "laravel-elixir": "^6.0"
   },
   "scripts": {
     "postinstall": "gulp"
