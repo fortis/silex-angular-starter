@@ -20,7 +20,7 @@ install:
   - composer update --prefer-dist --no-interaction && npm install -g gulp && npm install
 
 script:
-  - phpunit
+  - vendor/bin/phpunit
 
 deploy:
   provider: heroku
