@@ -17,7 +17,7 @@ before_install:
   - composer global require 'hirak/prestissimo'
 
 install:
-  - composer update --prefer-dist --no-interaction && npm install -g gulp && npm install
+  - composer install --prefer-dist --no-interaction && npm install -g gulp && npm install
 
 script:
   - vendor/bin/phpunit
