@@ -1,4 +1,6 @@
 # Silex 2 and AngularJS Starter Application
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/fortis/silex-angular-starter.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/fortis/silex-angular-starter.svg?branch=master)](https://travis-ci.org/fortis/silex-angular-starter)
 
 This is a starter application for a Single Page Application featuring the modern Silex 2 framework and Google’s acclaimed front-end framework AngularJS. Just download and install and you have a good foundation for building any application.
